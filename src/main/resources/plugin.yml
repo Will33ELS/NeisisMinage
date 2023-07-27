@@ -1,0 +1,11 @@
+main: fr.will33.neisisminage.NeisisMinagePlugin
+name: NeisisMinagePlugin
+version: ${project.version}
+author: William AVENTIN
+commands:
+  xpmine:
+  pointsmine:
+  minepointsadd:
+  minepoints:
+  minepointsreset:
+  minepointstake:

@@ -1,0 +1,5 @@
+shops:
+  DIRT:
+    amount: 1
+    data: 0
+    price: 1

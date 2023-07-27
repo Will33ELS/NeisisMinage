@@ -1,0 +1,23 @@
+- [X] Plugin.yml
+- [X] Connexion à la BDD
+- [ ] Système de niveau
+- [X] Stockage des données joueurs
+- [ ] Upgrade de la pioche en fonction du niveau
+- Commandes
+  - [X] /xpmine
+  - [X] /pointsmine
+  - [X] /minepointsadd
+  - [X] /minepoints
+  - [X] /minepointsreset
+  - [X] /minepointstake
+  - [ ] /minexp
+  - [ ] /minexpreset
+  - [ ] /minexpadd
+  - [ ] /minexpremove
+- GUI
+  - [ ] Système de GUI intéractif
+- Shop
+  - [ ] Chargement des shops
+  - [ ] Menu shop (joueur)
+  - [ ] Achat d'items
+  - [ ] Création de shop

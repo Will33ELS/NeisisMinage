@@ -1,0 +1,44 @@
+mysql:
+  host: localhost
+  port: 3306
+  username: username
+  password: password
+  database: database
+  prefixTable: "neisis_"
+systemEnabled: true
+points:
+  IRON_ORE:
+    points: 1
+    xp: 2
+config:
+  xpRequiredPerLevel: 100
+defaultPickaxe:
+  material: DIAMOND_PICKAXE
+  enchant:
+    DURABILITY: 1
+level:
+  1:
+    DIG_SPEED: 1
+  2:
+    DIG_SPEED: 2
+  3:
+    DIG_SPEED: 2
+    LOOT_BONUS: 1
+  4:
+    DIG_SPEED: 3
+    LOOT_BONUS: 1
+messages:
+  levelMiner: "[Neisis Minage] - Niveau {level} mineur : {current_xp}/{xp_required} XP"
+  points: "[Neisis Minage] - Points de Minage : {points}"
+  minepointAddHelp: "&c/minepointsadd <joueur> <points>"
+  minepointAdd: "&7Vous avez ajouté &e{points} points &7à &e{pseudo}"
+  minepointsHelp: "&c/minepoints <joueur>"
+  minepoints: "&e{pseudo} &7dispose de &e{points} &7points"
+  minepointTakeHelp: "&c/minepointstake <joueur> <points>"
+  minepointTake: "&7Vous avez retiré &e{points} points &7à &e{pseudo}"
+  minepointResetHelp: "&c/minepointsreset <joueur> <points>"
+  minepointReset: "&7Vous avez réinitialisé les points &7de &e{pseudo}"
+  notInt: "&cL'argument n'est pas un nombre !"
+  lowerO: "&cLe nombre doit être supérieur à 0 !"
+  noPermission: "&cVous n'avez pas la permission !"
+  playerEnoughPoint: "&cCe joueur n'a pas assez de point !"
