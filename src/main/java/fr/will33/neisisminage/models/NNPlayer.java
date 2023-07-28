@@ -72,6 +72,8 @@ public class NNPlayer {
         if (xp + this.totalXP >= xpRequire){
             this.level ++;
             this.totalXP = xp + this.totalXP - xpRequire;
+        } else {
+            this.totalXP += xp;
         }
     }
 
@@ -89,6 +91,14 @@ public class NNPlayer {
      */
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    /**
+     * Reset player
+     */
+    public void reset(){
+        this.totalXP = 0;
+        this.level = 0;
     }
 
 }

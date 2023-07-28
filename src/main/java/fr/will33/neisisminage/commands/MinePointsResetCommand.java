@@ -15,7 +15,7 @@ public class MinePointsResetCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         IConfigManager configManager = NeisisMinagePlugin.getInstance().getConfigManager();
         if(commandSender.hasPermission("neisisminage.commands.reset")) {
-            if (strings.length != 2) {
+            if (strings.length != 1) {
                 commandSender.sendMessage(configManager.getMessagesMinepointResetHelp());
             } else {
                 OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(strings[0]);

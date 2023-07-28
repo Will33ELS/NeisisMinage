@@ -1,8 +1,9 @@
 - [X] Plugin.yml
 - [X] Connexion à la BDD
-- [ ] Système de niveau
+- [X] Système de niveau
 - [X] Stockage des données joueurs
-- [ ] Upgrade de la pioche en fonction du niveau
+- [X] Don d'une pioche à la connexion slot 0
+- [X] Upgrade de la pioche en fonction du niveau
 - Commandes
   - [X] /xpmine
   - [X] /pointsmine
@@ -10,10 +11,10 @@
   - [X] /minepoints
   - [X] /minepointsreset
   - [X] /minepointstake
-  - [ ] /minexp
-  - [ ] /minexpreset
-  - [ ] /minexpadd
-  - [ ] /minexpremove
+  - [X] /minexp
+  - [X] /minexpreset
+  - [X] /minexpadd
+  - [X] /minexpremove
 - GUI
   - [ ] Système de GUI intéractif
 - Shop

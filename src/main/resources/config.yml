@@ -1,5 +1,5 @@
 mysql:
-  host: localhost
+  host:
   port: 3306
   username: username
   password: password
@@ -38,7 +38,16 @@ messages:
   minepointTake: "&7Vous avez retiré &e{points} points &7à &e{pseudo}"
   minepointResetHelp: "&c/minepointsreset <joueur> <points>"
   minepointReset: "&7Vous avez réinitialisé les points &7de &e{pseudo}"
+  minexpHelp: "&c/minexp <joueur>"
+  minexp: "&e{pseudo} &7est niveau &e{level} &7avec &e{xp} &7xp"
+  minexpResetHelp: "&c/minexpreset <joueur>"
+  minexpReset: "&7Vous avez réinitialisé &e{pseudo}"
+  minexpAddHelp: "&c/minexpadd <joueur> <xp>"
+  minexpAdd: "&7Vous avez ajouté &e{xp} &7xp à &e{pseudo}"
+  minexpRemoveHelp: "&c/minexptake <joueur> <xp>"
+  minexpRemove: "&7Vous avez retiré &e{xp} &7xp à &e{pseudo}"
   notInt: "&cL'argument n'est pas un nombre !"
   lowerO: "&cLe nombre doit être supérieur à 0 !"
   noPermission: "&cVous n'avez pas la permission !"
   playerEnoughPoint: "&cCe joueur n'a pas assez de point !"
+  playerEnoughXP: "&cCe joueur n'a pas assez d'XP !"

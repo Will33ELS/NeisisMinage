@@ -9,3 +9,7 @@ commands:
   minepoints:
   minepointsreset:
   minepointstake:
+  minexp:
+  minexpreset:
+  minexpadd:
+  minexpremove:

@@ -10,13 +10,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class MinePointsTakeCommand implements CommandExecutor {
+public class MinexpAddCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         IConfigManager configManager = NeisisMinagePlugin.getInstance().getConfigManager();
-        if(commandSender.hasPermission("neisisminage.commands.take")) {
+        if(commandSender.hasPermission("neisisminage.commands.xp.add")) {
             if (strings.length != 2) {
-                commandSender.sendMessage(configManager.getMessagesMinepointTakeHelp());
+                commandSender.sendMessage(configManager.getMessagesMinexpAddHelp());
             } else {
                 OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(strings[0]);
                 NNPlayer nPlayer;
@@ -27,23 +27,19 @@ public class MinePointsTakeCommand implements CommandExecutor {
                     e.printStackTrace();
                     return false;
                 }
-                int points;
+                int xp;
                 try {
-                    points = Integer.parseInt(strings[1]);
-                    if (points < 0) {
+                    xp = Integer.parseInt(strings[1]);
+                    if (xp < 0) {
                         commandSender.sendMessage(configManager.getLower0());
-                        return false;
-                    }
-                    if(nPlayer.getPoints() < points){
-                        commandSender.sendMessage(configManager.getPlayerEnoughPoint());
                         return false;
                     }
                 } catch (NumberFormatException err) {
                     commandSender.sendMessage(configManager.getNotInt());
                     return false;
                 }
-                nPlayer.setPoints(nPlayer.getPoints() - points);
-                commandSender.sendMessage(configManager.getMessagesMinepointTake().replace("{points}", String.valueOf(points)).replace("{pseudo}", offlinePlayer.getName()));
+                nPlayer.addProgression(NeisisMinagePlugin.getInstance().getPlayerManager(), xp, 0);
+                commandSender.sendMessage(configManager.getMessagesMinexpAdd().replace("{xp}", String.valueOf(xp)).replace("{pseudo}", offlinePlayer.getName()));
                 NeisisMinagePlugin.getInstance().getPlayerManager().savePlayer(nPlayer, null);
             }
         } else {

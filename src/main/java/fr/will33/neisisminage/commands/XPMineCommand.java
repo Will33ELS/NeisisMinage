@@ -18,7 +18,7 @@ public class XPMineCommand implements CommandExecutor {
                         NeisisMinagePlugin.getInstance().getConfigManager().getMessagesLevelMiner()
                                 .replace("{level}", String.valueOf(nPlayer.getLevel()))
                                 .replace("{current_xp}", String.valueOf(nPlayer.getTotalXP()))
-                                .replace("{xp_required}", String.valueOf(nPlayer.getTotalXP()))
+                                .replace("{xp_required}", String.valueOf(NeisisMinagePlugin.getInstance().getPlayerManager().getXPRequire(nPlayer.getLevel() + 1)))
                 ));
             });
 

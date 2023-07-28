@@ -7,11 +7,11 @@ import fr.will33.neisisminage.exception.NNPlayerException;
 import fr.will33.neisisminage.models.NNPlayer;
 import fr.will33.neisisminage.stockage.PlayerStockage;
 import org.bukkit.Bukkit;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerManager {
 
@@ -60,16 +60,17 @@ public class PlayerManager {
 
     /**
      * Add progression
-     * @param player Instance of the player
+     * @param nPlayer Instance of the player
      * @param xp XP to add
      * @param points Points to add
      */
-    public void addProgression(NNPlayer player, int xp, int points){
-        int oldLevel = player.getLevel();
-        player.addProgression(this, xp, points);
-        int newLevel = player.getLevel();
+    public void addProgression(NNPlayer nPlayer, int xp, int points){
+        int oldLevel = nPlayer.getLevel();
+        nPlayer.addProgression(this, xp, points);
+        int newLevel = nPlayer.getLevel();
         if(oldLevel != newLevel){
-            new NNPlayerUpgradeLevelEvent(Bukkit.getPlayer(player.getPlayerUUID()), newLevel).callEvent();
+            Player player = Bukkit.getPlayer(nPlayer.getPlayerUUID());
+            new NNPlayerUpgradeLevelEvent(player, newLevel).callEvent();
         }
     }
 

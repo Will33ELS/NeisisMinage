@@ -6,8 +6,8 @@ import java.util.UUID;
 
 public class NNPlayerFixture {
 
-    public static NNPlayer getFixture(int points, int totalXP, int level){
-        NNPlayer nnPlayer = new NNPlayer(UUID.randomUUID());
+    public static NNPlayer getFixture(UUID uuid, int points, int totalXP, int level){
+        NNPlayer nnPlayer = new NNPlayer(uuid);
         nnPlayer.setPoints(points);
         nnPlayer.setTotalXP(totalXP);
         nnPlayer.setLevel(level);

@@ -6,11 +6,15 @@ import be.seeseemelk.mockbukkit.ServerMock;
 import fr.will33.neisisminage.NeisisMinagePlugin;
 import fr.will33.neisisminage.manager.PlayerManager;
 import fr.will33.neisisminage.models.NNPlayer;
+import fr.will33.neisisminage.test.fixture.ConfigManagerFixture;
 import fr.will33.neisisminage.test.fixture.NNPlayerFixture;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,7 +22,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 public class PlayerManagerTest {
     private ServerMock server;
+    @Mock
+    private NeisisMinagePlugin plugin;
     private PlayerManager playerManager;
+    private UUID playerUUID = UUID.randomUUID();
 
     @BeforeEach
     public void setUp()
@@ -26,7 +33,7 @@ public class PlayerManagerTest {
         if(!MockBukkit.isMocked()) {
             this.server = MockBukkit.mock();
         }
-        playerManager = new PlayerManager(NeisisMinagePlugin.getInstance().getConfigManager(), null);
+        playerManager = new PlayerManager(ConfigManagerFixture.getDefault(), null);
     }
 
     @Test
@@ -52,7 +59,7 @@ public class PlayerManagerTest {
 
     @Test
     public void doitPasserNiveau1(){
-        NNPlayer nnPlayer = NNPlayerFixture.getFixture(0, 99, 0);
+        NNPlayer nnPlayer = NNPlayerFixture.getFixture(playerUUID, 0, 99, 0);
         this.playerManager.addProgression(nnPlayer, 1, 0);
 
         assertEquals(nnPlayer.getLevel(), 1);
@@ -60,7 +67,7 @@ public class PlayerManagerTest {
 
     @Test
     public void doitPasserNiveau3(){
-        NNPlayer nnPlayer = NNPlayerFixture.getFixture(0, 300, 2);
+        NNPlayer nnPlayer = NNPlayerFixture.getFixture(playerUUID, 0, 300, 2);
         this.playerManager.addProgression(nnPlayer, 600, 0);
 
         assertEquals(nnPlayer.getLevel(), 3);
