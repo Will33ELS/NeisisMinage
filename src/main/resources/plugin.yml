@@ -2,6 +2,7 @@ main: fr.will33.neisisminage.NeisisMinagePlugin
 name: NeisisMinagePlugin
 version: ${project.version}
 author: William AVENTIN
+website: https://www.elesia.org
 commands:
   xpmine:
   pointsmine:
@@ -14,3 +15,4 @@ commands:
   minexpadd:
   minexpremove:
   mineshop:
+  minageshopcreate:

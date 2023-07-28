@@ -68,7 +68,7 @@ public class ShopGUI extends AbstractGUI {
             this.page ++;
             this.onUpdate(player);
         } else {
-            NeisisMinagePlugin.getInstance().getPlayerManager().getNNPlayer(player.getUniqueId()).ifPresent(nnPlayer -> {
+            NeisisMinagePlugin.getInstance().getPlayerManager().getNNPlayer(player.getName()).ifPresent(nnPlayer -> {
                 Shop shop = NeisisMinagePlugin.getInstance().getShopManager().getShop(itemStack.getType(), itemStack.getAmount(), itemStack.getData().getData());
                 Optional.ofNullable(shop).ifPresent(s -> {
                     if(clickType == ClickType.DROP && player.hasPermission("neisisminage.shop.delete")){

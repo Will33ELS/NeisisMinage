@@ -26,6 +26,10 @@ public interface IConfigManager {
     String getMessagesMinexpAdd();
     String getMessagesMinexpRemoveHelp();
     String getMessagesMinexpRemove();
+    String getMessagesMinageShopCreateHelp();
+    String getMessagesMinageShopCreate();
+    String getShopAlreadyExist();
+    String getNoItemInHand();
     String getPlayerEnoughPoint();
     String getPlayerEnoughXP();
     String getNoPermission();

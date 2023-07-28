@@ -10,6 +10,7 @@ public class CommandManager {
      * @param javaPlugin Instance of the plugin
      */
     public void registerCommands(JavaPlugin javaPlugin){
+        javaPlugin.getCommand("minageshopcreate").setExecutor(new MinageShopCreateCommand());
         javaPlugin.getCommand("minepointsadd").setExecutor(new MinePointsAddCommand());
         javaPlugin.getCommand("minepoints").setExecutor(new MinePointsCommand());
         javaPlugin.getCommand("minepointsreset").setExecutor(new MinePointsResetCommand());

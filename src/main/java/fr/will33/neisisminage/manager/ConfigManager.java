@@ -38,6 +38,10 @@ public class ConfigManager implements IConfigManager {
             MESSAGES_PLAYER_ENOUGH_POINTS,
             MESSAGES_NO_PERMISSIONS,
             MESSAGES_ENOUGH_POINTS,
+            MESSAGES_MINAGE_SHOP_CREATE_HELP,
+            MESSAGES_MINAGE_SHOP_CREATE,
+            SHOP_ALREADY_EXISTS,
+            NO_ITEM_IN_HAND,
             SHOP_TITLE_GUI,
             PREVIOUS_ITEM_NAME,
             NEXT_ITEM_NAME,
@@ -75,6 +79,10 @@ public class ConfigManager implements IConfigManager {
         MESSAGES_NOT_INT = configuration.getString("messages.notInt");
         MESSAGES_LOWER_0 = configuration.getString("messages.lowerO");
         MESSAGES_ENOUGH_POINTS = configuration.getString("messages.enoughPoint");
+        MESSAGES_MINAGE_SHOP_CREATE_HELP = configuration.getString("messages.minageShopCreateHelp");
+        MESSAGES_MINAGE_SHOP_CREATE = configuration.getString("messages.minageShopCreate");
+        SHOP_ALREADY_EXISTS = configuration.getString("messages.shopAlreadyExist");
+        NO_ITEM_IN_HAND = configuration.getString("messages.noItemInHand");
         SHOP_TITLE_GUI = configuration.getString("gui.shopTitleGUI");
         PREVIOUS_ITEM_NAME = configuration.getString("gui.previousItemName");
         NEXT_ITEM_NAME = configuration.getString("gui.nextItemName");
@@ -185,6 +193,26 @@ public class ConfigManager implements IConfigManager {
     @Override
     public String getMessagesMinexpRemove() {
         return ChatColor.translateAlternateColorCodes('&', this.MESSAGES_MINEXP_REMOVE);
+    }
+
+    @Override
+    public String getMessagesMinageShopCreateHelp() {
+        return ChatColor.translateAlternateColorCodes('&', this.MESSAGES_MINAGE_SHOP_CREATE_HELP);
+    }
+
+    @Override
+    public String getMessagesMinageShopCreate() {
+        return ChatColor.translateAlternateColorCodes('&', this.MESSAGES_MINAGE_SHOP_CREATE);
+    }
+
+    @Override
+    public String getShopAlreadyExist() {
+        return ChatColor.translateAlternateColorCodes('&', this.SHOP_ALREADY_EXISTS);
+    }
+
+    @Override
+    public String getNoItemInHand() {
+        return ChatColor.translateAlternateColorCodes('&', this.NO_ITEM_IN_HAND);
     }
 
     @Override

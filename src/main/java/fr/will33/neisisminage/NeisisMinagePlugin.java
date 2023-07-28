@@ -66,10 +66,14 @@ public class NeisisMinagePlugin extends JavaPlugin {
 
         this.playerManager = new PlayerManager(this.configManager, new PlayerStockage(this.mySQLDatabase, this.getConfig().getString("mysql.prefixTable")));
         this.shopManager = new ShopManager();
-        this.getLogger().info(this.shopManager.getShops().toString());
 
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
         new CommandManager().registerCommands(this);
+    }
+
+    @Override
+    public void onDisable() {
+        this.playerManager.getPlayers().forEach(player -> this.playerManager.savePlayer(player, null));
     }
 
     /**

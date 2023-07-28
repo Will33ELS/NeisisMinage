@@ -16,7 +16,7 @@ public class MinexpCommand implements CommandExecutor {
         IConfigManager configManager = NeisisMinagePlugin.getInstance().getConfigManager();
         if(commandSender.hasPermission("neisisminage.commands.xp")) {
             if (strings.length != 1) {
-                commandSender.sendMessage(configManager.getMessagesMinexp());
+                commandSender.sendMessage(configManager.getMessagesMinexpHelp());
             } else {
                 OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(strings[0]);
                 NNPlayer nPlayer;
