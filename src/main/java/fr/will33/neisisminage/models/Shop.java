@@ -19,4 +19,14 @@ public class Shop {
     public ItemStack getItemStack() {
         return itemStack;
     }
+
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "material=" + itemStack.getType() +
+                ", amount=" + itemStack.getAmount() +
+                ", data=" + itemStack.getData().getData() +
+                ", price=" + price +
+                '}';
+    }
 }

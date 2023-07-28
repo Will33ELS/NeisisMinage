@@ -1,25 +1,24 @@
 package fr.will33.neisisminage.models;
 
-import fr.will33.neisisminage.NeisisMinagePlugin;
 import fr.will33.neisisminage.manager.PlayerManager;
 
 import java.util.UUID;
 
 public class NNPlayer {
 
-    private final UUID playerUUID;
+    private final String playerName;
     private int level, points, totalXP;
 
-    public NNPlayer(UUID playerUUID) {
-        this.playerUUID = playerUUID;
+    public NNPlayer(String playerName) {
+        this.playerName = playerName;
     }
 
     /**
-     * Get UUID of the player
+     * Get name of the player
      * @return
      */
-    public UUID getPlayerUUID() {
-        return playerUUID;
+    public String getPlayerName() {
+        return playerName;
     }
 
     /**

@@ -51,3 +51,11 @@ messages:
   noPermission: "&cVous n'avez pas la permission !"
   playerEnoughPoint: "&cCe joueur n'a pas assez de point !"
   playerEnoughXP: "&cCe joueur n'a pas assez d'XP !"
+  enoughPoint: "&cVous n'avez pas assez de points !"
+gui:
+  shopTitleGUI: "Shop"
+  previousItemName: "&cPrécédent"
+  nextItemName: "&aSuivant"
+  deleteShop: "&cDrop pour supprimer le shop"
+  itemLore:
+    - "&ePrix: &6{price} points"

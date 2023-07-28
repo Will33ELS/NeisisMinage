@@ -34,7 +34,7 @@ public class PlayerManager {
             try {
                 this.playerStockage.loadPlayer(player);
             } catch (NNPlayerException e) {
-                NeisisMinagePlugin.getInstance().getLogger().warning("Un incident à eu lieu au chargement des données de l'UUID " + player.getPlayerUUID());
+                NeisisMinagePlugin.getInstance().getLogger().warning("Un incident à eu lieu au chargement des données de " + player.getPoints());
             }
             Bukkit.getScheduler().runTask(NeisisMinagePlugin.getInstance(), callback);
         });
@@ -50,7 +50,7 @@ public class PlayerManager {
             try {
                 this.playerStockage.savePlayer(player);
             } catch (NNPlayerException e) {
-                NeisisMinagePlugin.getInstance().getLogger().warning("Un incident à eu lieu à la sauvegarde des données de l'UUID " + player.getPlayerUUID());
+                NeisisMinagePlugin.getInstance().getLogger().warning("Un incident à eu lieu à la sauvegarde des données de " + player.getPlayerName());
             }
             if(callback != null) {
                 Bukkit.getScheduler().runTask(NeisisMinagePlugin.getInstance(), callback);
@@ -69,7 +69,7 @@ public class PlayerManager {
         nPlayer.addProgression(this, xp, points);
         int newLevel = nPlayer.getLevel();
         if(oldLevel != newLevel){
-            Player player = Bukkit.getPlayer(nPlayer.getPlayerUUID());
+            Player player = Bukkit.getPlayer(nPlayer.getPlayerName());
             new NNPlayerUpgradeLevelEvent(player, newLevel).callEvent();
         }
     }
@@ -85,22 +85,22 @@ public class PlayerManager {
 
     /**
      * Get {@link NNPlayer} instance
-     * @param playerUUID UUID of the player
+     * @param playerName Name of the player
      * @return
      */
-    public Optional<NNPlayer> getNNPlayer(UUID playerUUID){
-        return this.players.stream().filter(player -> player.getPlayerUUID().equals(playerUUID)).findFirst();
+    public Optional<NNPlayer> getNNPlayer(String playerName){
+        return this.players.stream().filter(player -> player.getPlayerName().equals(playerName)).findFirst();
     }
 
     /**
      * Get offline {@link NNPlayer}
-     * @param playerUUID UUID of the offline player
+     * @param playerName Name of the offline player
      * @return
      * @throws NNPlayerException
      */
-    public NNPlayer getOfflineNNPlayer(UUID playerUUID) throws NNPlayerException {
-        if(this.getNNPlayer(playerUUID).isPresent()) return this.getNNPlayer(playerUUID).get();
-        NNPlayer nPlayer = new NNPlayer(playerUUID);
+    public NNPlayer getOfflineNNPlayer(String playerName) throws NNPlayerException {
+        if(this.getNNPlayer(playerName).isPresent()) return this.getNNPlayer(playerName).get();
+        NNPlayer nPlayer = new NNPlayer(playerName);
         this.playerStockage.loadPlayer(nPlayer);
         return nPlayer;
     }

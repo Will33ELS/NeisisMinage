@@ -9,7 +9,9 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ConfigManager implements IConfigManager {
 
@@ -35,12 +37,18 @@ public class ConfigManager implements IConfigManager {
             MESSAGES_PLAYER_ENOUGH_XP,
             MESSAGES_PLAYER_ENOUGH_POINTS,
             MESSAGES_NO_PERMISSIONS,
+            MESSAGES_ENOUGH_POINTS,
+            SHOP_TITLE_GUI,
+            PREVIOUS_ITEM_NAME,
+            NEXT_ITEM_NAME,
+            DELETE_SHOP,
             MESSAGES_NOT_INT,
             MESSAGES_LOWER_0
                     ;
     public final Boolean SYSTEM_ENABLED;
     public final ItemStack PICKAXE;
     public final Map<Integer, Map<Enchantment, Integer>> UPGRADE_PICKAXE = new HashMap<>();
+    public final List<String> SHOP_ITEM_LORE;
     public ConfigManager(FileConfiguration configuration) throws IllegalArgumentException{
         XP_REQUIRED_PER_LEVEL = configuration.getInt("config.xpRequiredPerLevel");
         MESSAGES_LEVEL_MINER = configuration.getString("messages.levelMiner");
@@ -66,8 +74,14 @@ public class ConfigManager implements IConfigManager {
         MESSAGES_NO_PERMISSIONS = configuration.getString("messages.noPermission");
         MESSAGES_NOT_INT = configuration.getString("messages.notInt");
         MESSAGES_LOWER_0 = configuration.getString("messages.lowerO");
+        MESSAGES_ENOUGH_POINTS = configuration.getString("messages.enoughPoint");
+        SHOP_TITLE_GUI = configuration.getString("gui.shopTitleGUI");
+        PREVIOUS_ITEM_NAME = configuration.getString("gui.previousItemName");
+        NEXT_ITEM_NAME = configuration.getString("gui.nextItemName");
+        DELETE_SHOP = configuration.getString("gui.deleteShop");
         SYSTEM_ENABLED = configuration.getBoolean("systemEnabled");
         PICKAXE = new ItemStack(Material.valueOf(configuration.getString("defaultPickaxe.material")));
+        SHOP_ITEM_LORE = configuration.getStringList("gui.itemLore").stream().map(lore -> ChatColor.translateAlternateColorCodes('&', lore)).collect(Collectors.toList());
         for(String key : configuration.getConfigurationSection("defaultPickaxe.enchant").getKeys(false)){
             if(Enchantment.getByName(key) == null) {
                 NeisisMinagePlugin.getInstance().getLogger().warning("Enchantement " + key + " inconnu !");
@@ -201,6 +215,36 @@ public class ConfigManager implements IConfigManager {
     @Override
     public String getMessagesPoints() {
         return ChatColor.translateAlternateColorCodes('&', this.MESSAGES_POINTS);
+    }
+
+    @Override
+    public String getEnoughPoint() {
+        return ChatColor.translateAlternateColorCodes('&', this.MESSAGES_ENOUGH_POINTS);
+    }
+
+    @Override
+    public String getShopTitleGUI() {
+        return ChatColor.translateAlternateColorCodes('&', this.SHOP_TITLE_GUI);
+    }
+
+    @Override
+    public String getPreviousItemName() {
+        return ChatColor.translateAlternateColorCodes('&', this.PREVIOUS_ITEM_NAME);
+    }
+
+    @Override
+    public String getNextItemName() {
+        return ChatColor.translateAlternateColorCodes('&', this.NEXT_ITEM_NAME);
+    }
+
+    @Override
+    public String getDeleteShop() {
+        return ChatColor.translateAlternateColorCodes('&', this.DELETE_SHOP);
+    }
+
+    @Override
+    public List<String> getShopItemLore() {
+        return this.SHOP_ITEM_LORE;
     }
 
     @Override

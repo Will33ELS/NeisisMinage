@@ -16,9 +16,10 @@
   - [X] /minexpadd
   - [X] /minexpremove
 - GUI
-  - [ ] Système de GUI intéractif
+  - [X] Système de GUI intéractif
 - Shop
-  - [ ] Chargement des shops
-  - [ ] Menu shop (joueur)
-  - [ ] Achat d'items
+  - [X] Chargement des shops
+  - [X] Menu shop (joueur)
+  - [X] Achat d'items
   - [ ] Création de shop
+  - [ ] Suppression de shop (Drop via l'inventaire)

@@ -28,7 +28,7 @@ public class PlayerStockage {
     private void onCreateTable(){
         try{
             PreparedStatement preparedStatement = this.mySQLDatabase.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS " + this.prefixTable + "players (" +
-                    "`uuid` VARCHAR(255) PRIMARY KEY," +
+                    "`pseudo` VARCHAR(32) PRIMARY KEY," +
                     "`points` INT UNSIGNED," +
                     "`level` INT UNSIGNED," +
                     "`xp` INT UNSIGNED" +
@@ -47,8 +47,8 @@ public class PlayerStockage {
      */
     public void loadPlayer(NNPlayer player) throws NNPlayerException {
         try{
-            PreparedStatement preparedStatement = this.mySQLDatabase.getConnection().prepareStatement("SELECT * FROM " + this.prefixTable + "players WHERE uuid = ?");
-            preparedStatement.setString(1, player.getPlayerUUID().toString());
+            PreparedStatement preparedStatement = this.mySQLDatabase.getConnection().prepareStatement("SELECT * FROM " + this.prefixTable + "players WHERE pseudo = ?");
+            preparedStatement.setString(1, player.getPlayerName());
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 player.setPoints(resultSet.getInt("points"));
@@ -69,8 +69,8 @@ public class PlayerStockage {
      */
     public void savePlayer(NNPlayer player) throws NNPlayerException{
         try{
-            PreparedStatement preparedStatement = this.mySQLDatabase.getConnection().prepareStatement("INSERT INTO " + this.prefixTable + "players (uuid, points, level, xp) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE points = ?, level = ?, xp = ?");
-            preparedStatement.setString(1, player.getPlayerUUID().toString());
+            PreparedStatement preparedStatement = this.mySQLDatabase.getConnection().prepareStatement("INSERT INTO " + this.prefixTable + "players (pseudo, points, level, xp) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE points = ?, level = ?, xp = ?");
+            preparedStatement.setString(1, player.getPlayerName());
             preparedStatement.setInt(2, player.getPoints());
             preparedStatement.setInt(3, player.getLevel());
             preparedStatement.setInt(4, player.getTotalXP());

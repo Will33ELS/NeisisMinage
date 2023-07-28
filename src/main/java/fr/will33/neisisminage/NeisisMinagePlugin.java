@@ -5,10 +5,7 @@ import fr.will33.neisisminage.commands.PointsMineCommand;
 import fr.will33.neisisminage.commands.XPMineCommand;
 import fr.will33.neisisminage.database.MySQLDatabase;
 import fr.will33.neisisminage.listener.PlayerListener;
-import fr.will33.neisisminage.manager.CommandManager;
-import fr.will33.neisisminage.manager.ConfigManager;
-import fr.will33.neisisminage.manager.PlayerManager;
-import fr.will33.neisisminage.manager.ShopManager;
+import fr.will33.neisisminage.manager.*;
 import fr.will33.neisisminage.models.Gain;
 import fr.will33.neisisminage.stockage.PlayerStockage;
 import org.bukkit.Bukkit;
@@ -29,6 +26,7 @@ public class NeisisMinagePlugin extends JavaPlugin {
     private MySQLDatabase mySQLDatabase;
     private PlayerManager playerManager;
     private ShopManager shopManager;
+    private GUIManager guiManager;
 
     public NeisisMinagePlugin() {
         super();
@@ -44,6 +42,7 @@ public class NeisisMinagePlugin extends JavaPlugin {
 
         this.saveDefaultConfig();
         this.configManager = new ConfigManager(this.getConfig());
+        this.guiManager = new GUIManager();
         this.mySQLDatabase = new MySQLDatabase(
                 this.getConfig().getString("mysql.host"),
                 this.getConfig().getInt("mysql.port"),
@@ -67,9 +66,18 @@ public class NeisisMinagePlugin extends JavaPlugin {
 
         this.playerManager = new PlayerManager(this.configManager, new PlayerStockage(this.mySQLDatabase, this.getConfig().getString("mysql.prefixTable")));
         this.shopManager = new ShopManager();
+        this.getLogger().info(this.shopManager.getShops().toString());
 
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
         new CommandManager().registerCommands(this);
+    }
+
+    /**
+     * Get {@link GUIManager} instance
+     * @return
+     */
+    public GUIManager getGuiManager() {
+        return guiManager;
     }
 
     /**

@@ -4,6 +4,7 @@ import fr.will33.neisisminage.api.IConfigManager;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.List;
 import java.util.Map;
 
 public class ConfigManagerFixture {
@@ -127,6 +128,31 @@ public class ConfigManagerFixture {
 
             @Override
             public String getMessagesPoints() {
+                return null;
+            }
+
+            @Override
+            public String getEnoughPoint() {
+                return null;
+            }
+
+            @Override
+            public String getShopTitleGUI() {
+                return null;
+            }
+
+            @Override
+            public String getPreviousItemName() {
+                return null;
+            }
+
+            @Override
+            public String getNextItemName() {
+                return null;
+            }
+
+            @Override
+            public List<String> getShopItemLore() {
                 return null;
             }
 

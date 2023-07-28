@@ -14,6 +14,7 @@ public class CommandManager {
         javaPlugin.getCommand("minepoints").setExecutor(new MinePointsCommand());
         javaPlugin.getCommand("minepointsreset").setExecutor(new MinePointsResetCommand());
         javaPlugin.getCommand("minepointstake").setExecutor(new MinePointsTakeCommand());
+        javaPlugin.getCommand("mineshop").setExecutor(new MineshopCommand());
         javaPlugin.getCommand("minexp").setExecutor(new MinexpCommand());
         javaPlugin.getCommand("minexpreset").setExecutor(new MinexpResetCommand());
         javaPlugin.getCommand("minexpadd").setExecutor(new MinexpAddCommand());

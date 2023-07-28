@@ -12,13 +12,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 public class PlayerListener implements Listener {
 
@@ -27,7 +29,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
-        NNPlayer nPlayer = new NNPlayer(player.getUniqueId());
+        NNPlayer nPlayer = new NNPlayer(player.getName());
         this.playerManager.loadPlayer(nPlayer, () -> {
             if(NeisisMinagePlugin.getInstance().getConfigManager().isSystemEnabled() && player.getInventory().getItem(0) == null) {
                 player.getInventory().setItem(0, NeisisMinagePlugin.getInstance().getConfigManager().getPickaxe());
@@ -39,7 +41,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
-        this.playerManager.getNNPlayer(player.getUniqueId()).ifPresent(nPlayer ->
+        this.playerManager.getNNPlayer(player.getName()).ifPresent(nPlayer ->
                 this.playerManager.savePlayer(nPlayer, () -> this.playerManager.getPlayers().remove(nPlayer))
         );
     }
@@ -48,7 +50,7 @@ public class PlayerListener implements Listener {
     public void onBreak(BlockBreakEvent event){
         Player player = event.getPlayer();
         if(NeisisMinagePlugin.getInstance().getConfigManager().isSystemEnabled()) {
-            this.playerManager.getNNPlayer(player.getUniqueId()).ifPresent(nPlayer -> {
+            this.playerManager.getNNPlayer(player.getName()).ifPresent(nPlayer -> {
                 Block block = event.getBlock();
                 Optional.ofNullable(NeisisMinagePlugin.getInstance().getPoints().get(block.getType())).ifPresent(gain -> {
                     event.setCancelled(true);
@@ -70,5 +72,27 @@ public class PlayerListener implements Listener {
                 }
             }
         });
+    }
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent event){
+        Player player = (Player) event.getWhoClicked();
+        Inventory inventory = event.getClickedInventory();
+        if(inventory != null && event.getCurrentItem() != null){
+            NeisisMinagePlugin.getInstance().getGuiManager().getGUIOpened(player).ifPresent(gui -> {
+                if(gui.getInventory().equals(inventory)) {
+                    event.setCancelled(true);
+                    gui.onClick(player, event.getCurrentItem(), gui.getActions().get(event.getSlot()), event.getClick());
+                }
+            });
+        }
+    }
+
+    @EventHandler
+    public void onItemDamage(PlayerItemDamageEvent event){
+        ItemStack itemStack = event.getItem();
+        if(NeisisMinagePlugin.getInstance().getConfigManager().isSystemEnabled() && itemStack.getType().name().contains("_PICKAXE")){
+            event.setCancelled(true);
+        }
     }
 }

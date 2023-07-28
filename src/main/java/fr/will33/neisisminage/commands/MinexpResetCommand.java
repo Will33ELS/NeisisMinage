@@ -21,7 +21,7 @@ public class MinexpResetCommand implements CommandExecutor {
                 OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(strings[0]);
                 NNPlayer nPlayer;
                 try {
-                    nPlayer = NeisisMinagePlugin.getInstance().getPlayerManager().getOfflineNNPlayer(offlinePlayer.getUniqueId());
+                    nPlayer = NeisisMinagePlugin.getInstance().getPlayerManager().getOfflineNNPlayer(offlinePlayer.getName());
                 } catch (NNPlayerException e) {
                     commandSender.sendMessage("§cUn incident s'est produit " + e.getMessage());
                     e.printStackTrace();
